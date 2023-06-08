@@ -17,13 +17,13 @@ router.get("/", async (req, res) => {
     "https://previews.123rf.com/images/dxinerz/dxinerz1602/dxinerz160203664/52406066-insertar-imagen-el-color-del-icono-del-vector-image-can-tambi%C3%A9n-ser-utilizado-para-la-edici%C3%B3n-de.jpg";
 
   if (uriimg == null) {
-    const nomfile = "./umpolad/img5.PNG";
+    const nomfile = "./umpolad/img2.PNG";
 
     imgdole(imagePreview, nomfile, function () {
       console.log("img" + nomfile + "descargado");
     });
   } else {
-    const nomfile = "./umpolad/img5.PNG";
+    const nomfile = "./umpolad/img2.PNG";
 
     imgdole(uriimg, nomfile, function () {
       console.log("img" + nomfile + "descargado");
