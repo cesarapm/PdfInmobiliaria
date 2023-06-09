@@ -9,51 +9,115 @@ const fs = require("fs");
 const imgdole = require("../dow").dowload;
 
 router.get("/", async (req, res) => {
-  const uriimg = null;
-
-  // "https://assets.easybroker.com/property_images/3720688/60850451/EB-NH0688.jpg?version=1683171550";
-
-  let imagePreview =
-    "https://previews.123rf.com/images/dxinerz/dxinerz1602/dxinerz160203664/52406066-insertar-imagen-el-color-del-icono-del-vector-image-can-tambi%C3%A9n-ser-utilizado-para-la-edici%C3%B3n-de.jpg";
-
-  if (uriimg == null) {
-    const nomfile = "./umpolad/img3.PNG";
-
-    imgdole(imagePreview, nomfile, function () {
-      console.log("img" + nomfile + "descargado");
-    });
-  } else {
-    const nomfile = "./umpolad/img3.PNG";
-
-    imgdole(uriimg, nomfile, function () {
-      console.log("img" + nomfile + "descargado");
-    });
-  }
-
   // //   res.send("hello world");
+
+  res.setHeader("Content-Type", "application/pdf");
+  res.setHeader("Content-Disposition", 'attachment; filename="archivo.pdf"');
+  res.set(
+    "Content-Security-Policy",
+    "font-src 'self' data:; img-src 'self' data:; default-src 'self' http://localhost:3020/pdfss'"
+  );
 
   const doc = new PDFDocument();
 
-  const filePath = path.join(__dirname, "../umpolad/img1.PNG");
+  const filePath1 = path.join(__dirname, "../umpolad/img1.PNG");
+  const filePath2 = path.join(__dirname, "../umpolad/img2.PNG");
+  const filePath3 = path.join(__dirname, "../umpolad/img3.PNG");
+  const filePath4 = path.join(__dirname, "../umpolad/img4.PNG");
+  const filePath5 = path.join(__dirname, "../umpolad/img5.PNG");
+  const filePath6 = path.join(__dirname, "../umpolad/img6.PNG");
 
   // doc.pipe(fs.createWriteStream("output.pdf"));
   // Configurar la respuesta HTTP para que sea un archivo PDF
-  res.setHeader("Content-Type", "application/pdf");
-  res.setHeader("Content-Disposition", 'attachment; filename="archivo.pdf"');
 
   // Enviar el PDF generado como respuesta
-  doc.pipe(res);
+  await doc.pipe(res);
 
   // Agregar texto al PDF
+  const x1 = 50;
+  const y1 = 50;
+  const x2 = 300;
+  const y2 = 50;
+  const x3 = 50;
+  const y3 = 300;
+  const x4 = 300;
+  const y4 = 300;
+  const x5 = 50;
+  const y5 = 550;
+  const x6 = 300;
+  const y6 = 550;
+  const width = 230;
+  const height = 230;
 
-  doc.image(filePath, {
-    fit: [250, 300],
-    align: "center",
-    valign: "center",
-  });
-  doc
-    .fontSize(16)
-    .text("¡Hola, este es un ejemplo de PDF generado con PDFKit y Express!");
+  doc.fontSize(15).text("Nombre: " + global.nombre, 10, 40);
+  doc.fontSize(15).text("Email: " + global.email, 10, 60);
+  doc.fontSize(15).text("Precios: " + global.precios, 10, 80);
+  doc.fontSize(15).text("Ubicacion: " + global.ubicacion, 10, 100);
+  doc.fontSize(18).text("Titulo: " + global.title, 10, 140);
+  doc.fontSize(18).text("Description: " + global.description, 10, 165);
+
+  doc.addPage().image(
+    filePath1,
+    x1,
+    y1,
+    { width: width, height: height },
+    {
+      align: "center",
+      valign: "center",
+    }
+  );
+
+  doc.image(
+    filePath2,
+    x2,
+    y2,
+    { width: width, height: height },
+    {
+      align: "center",
+      valign: "center",
+    }
+  );
+
+  doc.image(
+    filePath3,
+    x3,
+    y3,
+    { width: width, height: height },
+    {
+      align: "center",
+      valign: "center",
+    }
+  );
+  doc.image(
+    filePath4,
+    x4,
+    y4,
+    { width: width, height: height },
+    {
+      align: "center",
+      valign: "center",
+    }
+  );
+  doc.image(
+    filePath5,
+    x5,
+    y5,
+    { width: width, height: height },
+    {
+      align: "center",
+      valign: "center",
+    }
+  );
+  doc.image(
+    filePath6,
+    x6,
+    y6,
+    { width: width, height: height },
+    {
+      align: "center",
+      valign: "center",
+    }
+  );
 
   // Finalizar el PDF y enviar la respuesta
   doc.end();
