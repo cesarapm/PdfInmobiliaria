@@ -31,6 +31,7 @@ const directorioImagenes = "./umpolad";
 app.use("/pdfss", require("./routes/pdfs"));
 app.use("/imgs", require("./routes/datos"));
 app.use("/var", require("./routes/variable"));
+app.use("/borrar", require("./routes/borrar"));
 
 app.use(express.static(directorioImagenes));
 

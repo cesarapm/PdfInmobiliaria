@@ -7,8 +7,6 @@ const fs = require("fs");
 const imgdole = require("../dow").dowload;
 
 router.get("/", async (req, res) => {
-  res.send("¡Hola, mundo de Gatitos !");
-
   let imagePreview =
     "https://previews.123rf.com/images/dxinerz/dxinerz1602/dxinerz160203664/52406066-insertar-imagen-el-color-del-icono-del-vector-image-can-tambi%C3%A9n-ser-utilizado-para-la-edici%C3%B3n-de.jpg";
 
@@ -91,6 +89,8 @@ router.get("/", async (req, res) => {
       console.log("img" + nomfile + "descargado");
     });
   }
+
+  res.send("toda");
 });
 
 module.exports = router;
