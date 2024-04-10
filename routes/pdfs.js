@@ -4,7 +4,7 @@ const router = new Router();
 const request = require("request");
 const PDFDocument = require("pdfkit");
 
-const blobStream = require('blob-stream');
+
 const path = require("path");
  
 const fs = require("fs");
