@@ -60,6 +60,6 @@ app.get("/imagenes", (req, res) => {
   });
 });
 
-const port = process.env.PORT || 443;
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => console.log(`Listening to port ${port}`));
